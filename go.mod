@@ -1,3 +1,3 @@
-module TeKura_3B
+module github.com/bigbananamuncha/tekura3b
 
-go 1.18
+go 1.24

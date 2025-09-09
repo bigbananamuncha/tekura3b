@@ -2,88 +2,57 @@ package main
 
 import (
 	"fmt"
-	
+	"github.com/bigbananamuncha/tekura3b/common/userinput"
+	"github.com/bigbananamuncha/tekura3b/common/dimensions"
+	"github.com/bigbananamuncha/tekura3b/common/cost"
 )
 
-type customer struct {
+type Customer struct {
 	firstName string
 	lastName string
 	age int
 	address string
+	telephone string
 	island int 
 	shippingCost int
 }
 
 func main() {
-	var cust customer
+	var cust Customer
 
-	// Get the customer details
-	cust.age = dimension.GetIntData("Enter your age: ")
-	cust.firstName = getStringData("Enter your first name: ")
+	// Get the inital customer input
+	cust.age = userinput.GetIntData("Enter your age: ")
+	cust.firstName = userinput.GetStringData("Enter your first name: ")
 
 	fmt.Printf("Hi %s, you are %d years old.\n", cust.firstName, cust.age)
 
 	// Get the package volume
-	height := getDimension("Enter the height, must be between 5 and 100: ")
-	width := getDimension("Enter the width, must be between 5 and 100: ")
-	depth := getDimension("Enter the depth, must be between 5 and 100: ")
+	height := dimensions.GetDimension("Enter the height, must be between 5 and 100: ")
+	width := dimensions.GetDimension("Enter the width, must be between 5 and 100: ")
+	depth := dimensions.GetDimension("Enter the depth, must be between 5 and 100: ")
 
-
-	cust.shippingCost
-
-	volume := getVolume(height, width, depth)
+	volume := dimensions.GetVolume(height, width, depth)
 
 	fmt.Printf("Hi %s, your box is %d cm cubed.\n", cust.firstName, volume)
 
-}
-	// Get the customer lastname and address 
+	cust.island = userinput.GetIntData("Enter your island (1: North Island, 2: South Island, 3: Stewart Island): ")
 
-func costCalculator() {
-	var cost int
-	if (volume <= 6000) {
-		cost = 8
-	} else if (volume > 6000 || volume < 100000) {
-		cost = 12
-	}
-	cost = 15
-}
-
-
-func getStringData(prompt string) (output string) {
-	fmt.Print(prompt)
-	fmt.Scanln(&output)
-	return output
-}
-
-
-
-func getBaseRate(volume int) int {
-	const lowRate = 800
-	const mediumRate = 1200
-	const highRate = 1500
-
-	if volume <= 6000 {
-		return lowRate
-	} else if volume > 6000 && volume < 100000 {
-		return mediumRate
-	} 
-	return highRate
-}
-
-
-
-func getShippingRate(baseRate int, island int) int {
-	const northIsland = 1
-	const northIslandRate = 10
-	const southIsland = 2
-	const southIslandRate = 15
-	const stewartIsland = 3
-	const stewartIslandRate = 20
 	
-	if island == northIsland {
-		return baseRate * northIslandRate
-	} else if island == southIsland {
-		return baseRate * southIslandRate
-	}
-	return baseRate * stewartIslandRate
+	baseRate := cost.GetBaseRate(volume)
+	cust.shippingCost = cost.GetShippingRate(baseRate, cust.island)
+	fmt.Printf("Your shipping cost is %d.\n", cust.shippingCost)
+
+	cust.address = userinput.GetStringData("Enter your address: ")
+	fmt.Printf("Your address is %s.\n", cust.address)
+	cust.telephone = userinput.GetStringData("Enter your telephone number: ")
+	fmt.Printf("Your telephone number is %s.\n", cust.telephone)
 }
+
+// TODO: modify the get island function to use a switch statement instead of an if statement,
+// and ask for the island name instead of the number. 
+// You need to be able to handle invalid input. And handle "North" "north" "North Island"
+// look up the "strings" package for help and maybe "regexp"
+
+// TODO: Add a function to print the customer details
+// TODO: Add a function that gets the volume of the package separate to the main function
+// TODO: look for any other improvements you can make to the code where you move logical chunks out to functions
