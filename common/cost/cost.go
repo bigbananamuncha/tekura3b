@@ -20,9 +20,7 @@ func GetBaseRate(volume int) int {
 func GetShippingRate(baseRate int, island string) int {
 
 	const northIslandRate = 10
-	
 	const southIslandRate = 15
-	
 	const stewartIslandRate = 20
 	
 	isNorthIsland := strings.Contains(strings.ToLower(island), "north")
@@ -31,7 +29,7 @@ func GetShippingRate(baseRate int, island string) int {
 
   switch {
     case isNorthIsland:
-        return baseRate * northIslandRate
+    	return baseRate * northIslandRate
     case isSouthIsland:
         return baseRate * southIslandRate
 	case isStewartIsland:

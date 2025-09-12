@@ -1,16 +1,24 @@
 package userinput
 
-import "fmt"
-
-func GetStringData(prompt string) (output string) {
+import (
+	"fmt"
+	"bufio"
+	"os"
+	"strconv"
+	"strings"
+)
+func GetStringData(prompt string) string {
 	fmt.Print(prompt)
-	fmt.Scanln(&output)
-	return output
+	reader := bufio.NewReader(os.Stdin)
+	output, _ := reader.ReadString('\n')
+	return strings.TrimSpace(output)
 }
 
 
-func GetIntData(prompt string) (output int) {
+func GetIntData(prompt string) int {
 	fmt.Print(prompt)
-	fmt.Scanln(&output)
+	reader := bufio.NewReader(os.Stdin)
+	input, _ := reader.ReadString('\n')
+	output, _ := strconv.Atoi(strings.TrimSpace(input))
 	return output
 }
