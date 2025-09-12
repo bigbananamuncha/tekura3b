@@ -1,5 +1,7 @@
 package cost
 
+import "strings"
+
 func GetBaseRate(volume int) int {
 	const lowRate = 800
 	const mediumRate = 1200
@@ -23,14 +25,18 @@ func GetShippingRate(baseRate int, island string) int {
 	
 	const stewartIslandRate = 20
 	
-  switch island {
-    case "northIsland":
+	isNorthIsland := strings.Contains(strings.ToLower(island), "north")
+	isSouthIsland := strings.Contains(strings.ToLower(island), "south")
+	isStewartIsland := strings.Contains(strings.ToLower(island), "stewart")
+
+  switch {
+    case isNorthIsland:
         return baseRate * northIslandRate
-    case "southIsland":
+    case isSouthIsland:
         return baseRate * southIslandRate
-	case "stewartIsland":
-		baseRate * stewartIslandRate
+	case isStewartIsland:
+		return baseRate * stewartIslandRate
 	default:
-        return 
+        return baseRate
     }
 }

@@ -13,7 +13,7 @@ type Customer struct {
 	age int
 	address string
 	telephone string
-	island int 
+	island string
 	shippingCost int
 }
 
@@ -35,7 +35,7 @@ func main() {
 
 	fmt.Printf("Hi %s, your box is %d cm cubed.\n", cust.firstName, volume)
 
-	cust.island := userinput.GetStringData("Enter your island (North Island, South Island, or Stewart Island): ")
+	cust.island = userinput.GetStringData("Enter your island (North Island, South Island, or Stewart Island): ")
 	
 	baseRate := cost.GetBaseRate(volume)
 	cust.shippingCost = cost.GetShippingRate(baseRate, cust.island)
