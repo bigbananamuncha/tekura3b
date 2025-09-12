@@ -24,11 +24,11 @@ func GetShippingRate(baseRate int, island string) int {
 	const stewartIslandRate = 20
 	
   switch island {
-    case northIsland:
+    case "northIsland":
         return baseRate * northIslandRate
-    case southIsland:
+    case "southIsland":
         return baseRate * southIslandRate
-	case stewartisland:
+	case "stewartIsland":
 		baseRate * stewartIslandRate
 	default:
         return 
