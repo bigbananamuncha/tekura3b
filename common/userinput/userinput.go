@@ -6,12 +6,17 @@ import (
 	"os"
 	"strconv"
 	"strings"
+	"golang.org/x/text/cases"
+	"golang.org/x/text/language"
 )
+
 func GetStringData(prompt string) string {
 	fmt.Print(prompt)
 	reader := bufio.NewReader(os.Stdin)
 	output, _ := reader.ReadString('\n')
-	return strings.TrimSpace(output)
+	caser := cases.Title(language.Und)
+	capitalizedString := caser.String(output)
+	return strings.TrimSpace(capitalizedString)
 }
 
 

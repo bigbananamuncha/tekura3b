@@ -21,15 +21,17 @@ func main() {
 	var cust Customer
 
 	// Get the inital customer input
-	cust.age = userinput.GetIntData("Enter your age: ")
-	cust.firstName = userinput.GetStringData("Enter your first name: ")
+	cust.firstName = userinput.GetStringData("Hello, please enter your first name: ")
+	cust.lastName = userinput.GetStringData("Please enter your last name: ")
+	fmt.Printf("Hi %s ", cust.firstName)
+	cust.age = userinput.GetIntData("Please enter your age: ")
 
 	fmt.Printf("Hi %s, you are %d years old.\n", cust.firstName, cust.age)
 
 	// Get the package volume
-	height := dimensions.GetDimension("Enter the height, must be between 5 and 100: ")
-	width := dimensions.GetDimension("Enter the width, must be between 5 and 100: ")
-	depth := dimensions.GetDimension("Enter the depth, must be between 5 and 100: ")
+	height := dimensions.GetDimension("Please enter the height of your package, must be between 5 and 100: ")
+	width := dimensions.GetDimension("Please enter the width of your package, must be between 5 and 100: ")
+	depth := dimensions.GetDimension("Enter the depth of your package, must be between 5 and 100: ")
 
 	volume := dimensions.GetVolume(height, width, depth)
 
@@ -45,11 +47,5 @@ func main() {
 	fmt.Printf("Your address is %s.\n", cust.address)
 	cust.telephone = userinput.GetStringData("Enter your telephone number: ")
 	fmt.Printf("Your telephone number is %s.\n", cust.telephone)
+	fmt.Printf("Here are your details: %+v\n", cust)
 }
-
-// You need to be able to handle invalid input. And handle "North" "north" "North Island"
-// look up the "strings" package for help and maybe "regexp"
-
-// TODO: Add a function to print the customer details
-// TODO: Add a function that gets the volume of the package separate to the main function
-// TODO: look for any other improvements you can make to the code where you move logical chunks out to functions

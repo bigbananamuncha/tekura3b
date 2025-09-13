@@ -28,9 +28,6 @@ func invalidDimension(toBeValidated int) bool {
 	return toBeValidated < 5 || toBeValidated > 100
 }
 
-
-
-
 func GetVolume(height int, width int, depth int) int {
 	return height * width * depth
 }
