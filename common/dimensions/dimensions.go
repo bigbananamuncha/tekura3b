@@ -5,12 +5,14 @@ import (
 	"github.com/bigbananamuncha/tekura3b/common/userinput"
 )
 
-func GetDimension(prompt string) int {
+//retrieving the dimensions of the package using the command line 
+func GetDimension(prompt string) float64 {
 	
-	var output int
+	var output float64 
 
+	//checking for valid inputs
 	for {
-		output = userinput.GetIntData(prompt)
+		output = userinput.GetFloatData(prompt)
 		if invalidDimension(output) {
 			fmt.Println("Dimensions must be between 5 and 100")
 			fmt.Errorf("error: invalid dimension")
@@ -23,11 +25,12 @@ func GetDimension(prompt string) int {
 	return output
 }
 
-
-func invalidDimension(toBeValidated int) bool {
+//checking the input is between the required rage 
+func invalidDimension(toBeValidated float64) bool {
 	return toBeValidated < 5 || toBeValidated > 100
 }
 
-func GetVolume(height int, width int, depth int) int {
+//calculating the volume of the package
+func GetVolume(height float64, width float64, depth float64) float64 {
 	return height * width * depth
 }
