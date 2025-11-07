@@ -14,6 +14,7 @@ func GetStringData(prompt string) string {
     fmt.Print(prompt)
     reader := bufio.NewReader(os.Stdin)
     output, _ := reader.ReadString('\n')
+    // TODO: add error handling
 	caser := cases.Title(language.Und)
 	//capitalising the first letter of each word
     capitalizedString := caser.String(output)

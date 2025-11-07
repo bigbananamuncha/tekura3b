@@ -20,6 +20,7 @@ type Customer struct {
 func main() {
 	var cust Customer
 
+	// --- create a function that does this and put it here - use a pointer for cust
 	// Get the inital customer input
 	// Name, last name, and age 
 	cust.firstName = userinput.GetStringData("Hello, please enter your first name: ")
@@ -29,7 +30,9 @@ func main() {
 
 	// Print the customers details
 	fmt.Printf("Hi %s, you are %d years old.\n", cust.firstName, cust.age)
+	// <----
 
+	// ---> same here
 	// Get the package dimensions
 	height := dimensions.GetDimension("Please enter the height of your package, must be between 5 and 100: ")
 	width := dimensions.GetDimension("Please enter the width of your package, must be between 5 and 100: ")
@@ -40,7 +43,9 @@ func main() {
 
 	// Print the package volume
 	fmt.Printf("Hi %s, your box is %f cm cubed.\n", cust.firstName, volume)
+	// <---
 
+	// ---> same here
 	// Get the island of residence for the customer
 	
 	for {
@@ -54,12 +59,16 @@ func main() {
         // Error message for the user
         fmt.Println("Invalid island entered")
     }
+	// <---
 	
+	// ---> same here
 	// Find the cost of shipping
 	baseRate := cost.GetBaseRate(volume)
 	cust.shippingCost = cost.GetShippingRate(baseRate, cust.island)
 	fmt.Printf("Your shipping cost is NZD $%.2f \n", cust.shippingCost)
+	// <---
 
+	// --- same here
 	// Get the last details: adress and phone number, then print all the collected details. 
 	cust.address = userinput.GetStringData("Please enter your address: ")
 	fmt.Printf("Your address is %s.\n", cust.address)
@@ -71,4 +80,5 @@ func main() {
 	fmt.Printf("Age:\t\t\t%d\n", cust.age)
 	fmt.Printf("Phone:\t\t\t%s\n", cust.telephone)
 	fmt.Printf("Shipping Address:\t%s\n", cust.address)
+	// <---
 }

@@ -57,3 +57,5 @@ func TestGetIntData_Spaces(t *testing.T) {
 	
 	assert.Equal(t, expected, result, "GetIntData should handle leading/trailing spaces")
 }
+
+// TODO: add tests that produce errors and check that they return the correct error message
