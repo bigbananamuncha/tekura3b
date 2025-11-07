@@ -26,7 +26,7 @@ func GetBaseRate(volume float64) float64 {
 	return highRate
 }
 
-//find the final shipping rate using the surcharge from each island
+//find the final shipping rate using the surcharge from each island 
 func GetShippingRate(baseRate float64, island string) float64 {
 
 	var finalRate float64 = baseRate
@@ -37,7 +37,7 @@ func GetShippingRate(baseRate float64, island string) float64 {
 	isNorthIsland := strings.Contains(strings.ToLower(island), "north")
 	isSouthIsland := strings.Contains(strings.ToLower(island), "south")
 	isStewartIsland := strings.Contains(strings.ToLower(island), "stewart")
-
+//find the final rate by multiplying from each case e.g. case isNorthIsland = baseRate * northIslandRate
   switch {
     case isNorthIsland:
     	finalRate = baseRate * northIslandRate
